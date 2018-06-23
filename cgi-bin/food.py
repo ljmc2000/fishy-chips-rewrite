@@ -28,6 +28,19 @@ class Food:
 
 		return returnme
 
+	def apply(self,pagestring,short=False):
+		'''replace each variable in pagestring with it\'s respective element of this class '''
+		pagestring=pagestring.replace("%PICTURE%","/food_images/"+self.picture)
+		pagestring=pagestring.replace("%MENUNUMBER%","%d" % self.menunumber)
+		pagestring=pagestring.replace("%NAME%",self.name)
+		pagestring=pagestring.replace("%PRICE%","%.2f" % self.price)
+
+		if short:
+			pagestring=pagestring.replace("%DESCRIPTION%",self.shortDescription())
+		else:
+			pagestring=pagestring.replace("%DESCRIPTION%",self.description)
+
+		return pagestring
 
 	def shortDescription(self):
 		if len(self.description)>100:
@@ -36,14 +49,20 @@ class Food:
 			return self.description
 
 def loadfood(menunumber):
+	#request data from database
 	myconnection,mycursor=database_connect()
 	getfood="select menunumber,name,description,price,picture from food where(menunumber=?)"
 	mycursor.execute(getfood,(menunumber,))
 
+	#put data in vars
 	menunumber,name,description,price,picture = mycursor.fetchone()
-
 	mycursor.close()
 	myconnection.close()
+
+	#decode the unicode objects
+	name=name.decode()
+	description=description.decode()
+	picture=picture.decode()
 
 	return Food(menunumber,name,description,price,picture)
 
