@@ -1,6 +1,17 @@
 #some functions that can be used by all other cgi scripts
 from os import environ
 from http import cookies
+from userclasses import User
+
+def is_admin():
+	'''check if the user is logged in and is an admin'''
+	COOKIES=load_cookies()
+	if not COOKIES.get("Login_UID"):
+		return False
+
+	user=User(COOKIES["Login_UID"].value)
+
+	return user.username=="admin"
 
 def loadpage(name):
 	myfile=open("pages/"+name,"r")
@@ -13,7 +24,11 @@ def loadheader():
 	returnme=loadpage("common_header.html")
 	COOKIES=load_cookies()
 
-	if COOKIES.get("Login_UID"):
+	if is_admin():
+		admin_header=loadpage("admin-header.html")
+		returnme=returnme.replace("%LOGIN_BOX%",admin_header)
+
+	elif COOKIES.get("Login_UID"):
 		logout=loadpage("logout-form.html")
 		returnme=returnme.replace("%LOGIN_BOX%",logout)
 	else:
