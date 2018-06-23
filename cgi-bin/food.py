@@ -14,18 +14,7 @@ class Food:
 	def asrow(self):
 		'''print the class as a row in a table'''
 		returnme=loadpage("index_table_row.html")
-		returnme=returnme.replace("%IMAGE%",self.picture)
-		returnme=returnme.replace("%MENUNUMBER%","%d" % self.menunumber)
-		returnme=returnme.replace("%NAME%",self.name)
-		returnme=returnme.replace("%DESCRIPTION%",self.shortDescription())
-		returnme=returnme.replace("%PRICE%","%.2f" % self.price)
-
-		item="food"+str(self.menunumber)
-		if item in SESSION:
-			returnme=returnme.replace("%INBASKET%", "("+SESSION[item]+")" )
-		else:
-			returnme=returnme.replace("%INBASKET%","")
-
+		returnme=self.apply(returnme,short=True)
 		return returnme
 
 	def apply(self,pagestring,short=False):
