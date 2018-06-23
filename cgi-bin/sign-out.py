@@ -1,12 +1,9 @@
 #!/usr/bin/python3
-
-from http import cookies
 from os import environ
 from database_connection import database_connect
-from functions import sendto
+from functions import sendto,load_cookies
+COOKIES=load_cookies()
 
-COOKIES=cookies.SimpleCookie()
-COOKIES.load(environ["HTTP_COOKIE"])
 
 if not COOKIES.get("Login_UID"):
 	sendto("/",message="Not signed in")
