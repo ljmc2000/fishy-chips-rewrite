@@ -68,9 +68,8 @@ class Buyer(User):
 		self.card=CreditCard(self.username)
 
 	def __str__(self):
-		returnme=""
-		returnme=self.username+"\n"
-		returnme=returnme+str(self.card)+"\n"
+		returnme=super(Buyer,self).__str__()+"\n\n"
+		returnme=returnme+str(self.card)+"\n\n"
 		returnme=returnme+str(self.address)
 
 		return returnme
