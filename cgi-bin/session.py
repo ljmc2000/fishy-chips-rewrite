@@ -81,7 +81,7 @@ def session_start():
 
 	if not COOKIE.get("SESSION"):
 		SESSION=Session(None)
-		COOKIE["SESSION"]=SESSION
+		COOKIE["SESSION"]=SESSION.sid
 		print(COOKIE)
 
 	else:
