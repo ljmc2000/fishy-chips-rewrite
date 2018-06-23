@@ -22,7 +22,7 @@ class Food:
 
 		item="food"+str(self.menunumber)
 		if item in SESSION:
-			returnme=returnme.replace("%INBASKET%",SESSION[item])
+			returnme=returnme.replace("%INBASKET%", "("+SESSION[item]+")" )
 		else:
 			returnme=returnme.replace("%INBASKET%","")
 
