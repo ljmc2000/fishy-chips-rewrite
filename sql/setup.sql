@@ -8,6 +8,16 @@ create table users
 	password char(64)
 );
 
+//instead of using a cookie with username as login token, lookup username from here
+//this differs from the original version of the site
+create table logged_in_users
+(
+	username varchar(10),
+	Login_UID char(64) primary key,
+
+	foreign key(username) references users(username)
+);
+
 create table payinfo
 (
 	username varchar(10) primary key,
