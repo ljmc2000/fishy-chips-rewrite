@@ -14,6 +14,7 @@ create table logged_in_users
 (
 	username varchar(10),
 	Login_UID char(64) primary key,
+	expires timestamp,
 
 	foreign key(username) references users(username)
 );
