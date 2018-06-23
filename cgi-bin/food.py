@@ -14,12 +14,12 @@ class Food:
 	def asrow(self):
 		'''print the class as a row in a table'''
 		returnme=loadpage("index_table_row.html")
-		returnme=self.apply(returnme,short=True)
+		returnme=self.delimit(returnme,short=True)
 		return returnme
 
-	def apply(self,pagestring,short=False):
+	def delimit(self,pagestring,short=False):
 		'''replace each variable in pagestring with it\'s respective element of this class '''
-		pagestring=pagestring.replace("%PICTURE%","/food_images/"+self.picture)
+		pagestring=pagestring.replace("%PICTURE%",self.picture)
 		pagestring=pagestring.replace("%MENUNUMBER%","%d" % self.menunumber)
 		pagestring=pagestring.replace("%NAME%",self.name)
 		pagestring=pagestring.replace("%PRICE%","%.2f" % self.price)

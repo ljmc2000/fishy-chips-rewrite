@@ -10,7 +10,7 @@ food=loadfood(menunumber)
 #generate the page
 pagestring=loadpage("itempage.html")
 pagestring=pagestring.replace("%COMMON_HEADER%", loadheader() )
-pagestring=food.apply(pagestring)
+pagestring=food.delimit(pagestring)
 
 #serve page to user
 print("Content-type: text/html\n")
