@@ -1,3 +1,16 @@
 <html><body>
+<link rel="stylesheet" href="/pages/style.css" />
 %COMMON_HEADER%
+
+<middle>
+	<form action="/cgi-bin/create-account.py" method="post">
+		<h2>register</h2>
+
+		username <input type="text" name="username" required><br>
+		password <input type="password" name="password1" required><br>
+		confirm password <input type="password" name="password2" required><br>
+		<input type="submit">
+	</form>
+<middle>
+
 </body></html>
