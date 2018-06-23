@@ -1,9 +1,14 @@
 #!/usr/bin/python3
 #a page where the item description may be read in full if too long
+
+#internal librarys
 from functions import *
 from food import *
+
+#external librarys
 import cgi
 
+#initialise some data
 GET=cgi.FieldStorage()
 menunumber=GET["menunumber"].value
 food=loadfood(menunumber)

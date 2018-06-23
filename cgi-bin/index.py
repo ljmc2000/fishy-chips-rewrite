@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 #the "homepage" of the website
+
+#internal librarys
 from functions import *
 from food import make_menu,menu2string
 

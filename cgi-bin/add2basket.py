@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 #add or remove an item from the shopping basket
+
+#external librarys
 from os import environ
-from session import *
 import cgi
+
+#internal librarys
+from session import *
 from functions import sendto
 
+#useful variables
 SESSION=session_start()
 GET=cgi.FieldStorage()
 
