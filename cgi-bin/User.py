@@ -63,11 +63,14 @@ class Address:
 
 class Buyer(User):
 	def __init__(self,uid):
-		self=User(uid)
+		super().__init__(uid)
 		self.address=Address(self.username)
 		self.card=CreditCard(self.username)
 
 	def __str__(self):
-		returnme=super.__str__()+"\n"
+		returnme=""
+		returnme=self.username+"\n"
 		returnme=returnme+str(self.card)+"\n"
 		returnme=returnme+str(self.address)
+
+		return returnme
