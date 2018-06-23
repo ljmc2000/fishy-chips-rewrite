@@ -1,0 +1,50 @@
+body
+{
+	background-image: url("background.jpeg");
+	color: yellow;
+}
+
+a
+{
+	color: cyan;
+}
+
+top
+{
+	margin-left: 10%;
+	margin-right: 10%;
+}
+
+main
+{
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+middle
+{
+	text-align: center;
+}
+
+right
+{
+	text-align: right;
+}
+
+big
+{
+	font-size: 150%;
+}
+
+#checkout_table
+{
+	font-size: 150%;
+	border: 1px solid black;
+}
+
+#box
+{
+	border: 1px solid black;
+}
+
+
