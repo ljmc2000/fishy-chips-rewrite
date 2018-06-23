@@ -43,7 +43,10 @@ def load_cookies():
 		COOKIES.load(environ["HTTP_COOKIE"])
 		return COOKIES
 	except KeyError:
-		print("Content-Type: text/plain\n\nPlease enable cookies")
+		popup=loadpage("popup.html")
+		message="Please enable cookies"
+		popup=popup.replace("%MESSAGE%",message)
+		print(popup)
 		quit()
 
 def sendto(page,message=None):
