@@ -1,5 +1,7 @@
 from database_connection import database_connect
 from functions import loadpage
+from session import *
+SESSION=session_start()
 
 class Food:
 	def __init__(self, menunumber, name, description, price, picture):
@@ -17,6 +19,12 @@ class Food:
 		returnme=returnme.replace("%NAME%",self.name)
 		returnme=returnme.replace("%DESCRIPTION%",self.shortDescription())
 		returnme=returnme.replace("%PRICE%","%.2f" % self.price)
+
+		item="food"+str(self.menunumber)
+		if item in SESSION:
+			returnme=returnme.replace("%INBASKET%",SESSION[item])
+		else:
+			returnme=returnme.replace("%INBASKET%","")
 
 		return returnme
 
@@ -42,13 +50,14 @@ def make_menu():
 
 def menu2string(menu):
 	'''print a menu in index.py'''
-	returnme=""
-	listsize=len(menu)-1
+	returnme="<table align=\"center\">"
+	listsize=len(menu)
 	for i in range(0,listsize,2):
 		returnme=returnme+"<tr>"
 		returnme=returnme+menu[i].asrow()
-		if i>=listsize:
+		if i<listsize-1:
 			returnme=returnme+menu[i+1].asrow()
 		returnme=returnme+"</tr>"
+	returnme=returnme+"</table>"
 
 	return returnme
