@@ -28,11 +28,25 @@ class Food:
 
 		return returnme
 
+
 	def shortDescription(self):
 		if len(self.description)>100:
 			return self.description[:100]+"..."
 		else:
 			return self.description
+
+def loadfood(menunumber):
+	myconnection,mycursor=database_connect()
+	getfood="select menunumber,name,description,price,picture from food where(menunumber=?)"
+	mycursor.execute(getfood,(menunumber,))
+
+	menunumber,name,description,price,picture = mycursor.fetchone()
+
+	mycursor.close()
+	myconnection.close()
+
+	return Food(menunumber,name,description,price,picture)
+
 
 def make_menu():
 	myconnection,mycursor=database_connect()
@@ -46,7 +60,11 @@ def make_menu():
 		picture=picture.decode()
 		menu.append( Food(menunumber,name,description,price,picture) )
 
+	mycursor.close()
+	myconnection.close()
+
 	return menu
+
 
 def menu2string(menu):
 	'''print a menu in index.py'''

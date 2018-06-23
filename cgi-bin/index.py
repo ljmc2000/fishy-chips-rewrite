@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from functions import *
-from foodtable import make_menu,menu2string
+from food import make_menu,menu2string
 
 #load the page
 pagestring=loadpage("index.html")
