@@ -71,6 +71,10 @@ class Session():
 			returnme[item]=self[item]
 		return returnme
 
+	def clear(self,key):
+		'''wipe a key clean completely'''
+		os.remove(self.sessdir+"/"+key)
+
 def session_start():
 	COOKIE=cookies.SimpleCookie()
 	COOKIE.load(os.environ.get('HTTP_COOKIE'))
