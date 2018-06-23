@@ -40,7 +40,14 @@ class Food:
 		else:
 			pagestring=pagestring.replace("%DESCRIPTION%",self.description)
 
+		item="food"+str(self.menunumber)
+		if item in SESSION:
+			pagestring=pagestring.replace("%INBASKET%", "("+SESSION[item]+")" )
+		else:
+			pagestring=pagestring.replace("%INBASKET%","")
+
 		return pagestring
+
 
 	def shortDescription(self):
 		if len(self.description)>100:
