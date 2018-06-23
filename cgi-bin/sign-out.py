@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#allow the user to logout
 from os import environ
 from database_connection import database_connect
 from functions import sendto,load_cookies

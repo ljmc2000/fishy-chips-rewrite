@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#a page where the item description may be read in full if too long
 from functions import *
 from food import *
 import cgi

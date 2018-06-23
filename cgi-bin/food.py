@@ -1,3 +1,4 @@
+#a class for storing menuitems
 from database_connection import database_connect
 from functions import loadpage
 from session import *

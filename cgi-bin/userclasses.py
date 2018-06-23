@@ -1,3 +1,4 @@
+#classes to represent users, creditcards and addresses
 from database_connection import database_connect
 
 class User:

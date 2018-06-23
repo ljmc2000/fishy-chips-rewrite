@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#add or remove an item from the shopping basket
 from os import environ
 from session import *
 import cgi

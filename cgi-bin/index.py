@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+#the "homepage" of the website
 from functions import *
 from food import make_menu,menu2string
 
