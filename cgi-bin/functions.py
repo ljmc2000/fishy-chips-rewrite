@@ -23,9 +23,13 @@ def loadheader():
 	return returnme
 
 def load_cookies():
-	COOKIES=cookies.SimpleCookie()
-	COOKIES.load(environ["HTTP_COOKIE"])
-	return COOKIES
+	try:
+		COOKIES=cookies.SimpleCookie()
+		COOKIES.load(environ["HTTP_COOKIE"])
+		return COOKIES
+	except KeyError:
+		print("Content-Type: text/plain\n\nPlease enable cookies")
+		quit()
 
 def sendto(page,message=None):
 	print("Content-type: text/html\n")
