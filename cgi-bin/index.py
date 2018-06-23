@@ -3,7 +3,7 @@ from functions import *
 
 #load the page
 pagestring=loadpage("index.html")
-common_header=loadpage("common_header.html")
+common_header=loadheader()
 
 #create the page the user wants to see
 pagestring=pagestring.replace("%COMMON_HEADER%",common_header)
