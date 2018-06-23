@@ -1,4 +1,5 @@
 import mysql.connector	#package mysql-connector is required for this to work
+			#pip install --user mysql-connector
 
 def database_connect():
 	try:

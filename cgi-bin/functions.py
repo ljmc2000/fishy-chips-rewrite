@@ -26,3 +26,15 @@ def load_cookies():
 	COOKIES=cookies.SimpleCookie()
 	COOKIES.load(environ["HTTP_COOKIE"])
 	return COOKIES
+
+def sendto(page,message=None):
+	print("Content-type: text/html\n")
+
+	if message:
+		popup=loadpage("popup.html")
+		popup=popup.replace("%MESSAGE%",message)
+		print(popup)
+
+	redirect_code=loadpage("redirect.html")
+	redirect_code=redirect_code.replace("%GOTO_PAGE%",page)
+	print(redirect_code)
