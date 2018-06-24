@@ -28,7 +28,7 @@ try:
 	filename=filename.decode()
 	os.remove("food_images/"+filename)
 except FileNotFoundError:
-	continue
+	pass
 
 #delete food from database
 delitem="delete from food where (menunumber=?)"
