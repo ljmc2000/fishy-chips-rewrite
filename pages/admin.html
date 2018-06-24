@@ -1,0 +1,32 @@
+<html><body>
+<link rel="stylesheet" href="/pages/style.css"/>
+
+%COMMON_HEADER%
+
+<main>
+	<h2>Change admin password</h2>
+
+	<form method="post" action="change-password.py">
+		Old password <input type="password" name="oldpwd" required/><br>
+		new password <input type="password" name="newpwd1" required><br>
+		repeat password <input type="password" name="newpwd2" required><br>
+		<input type="submit" value="change password" name="submit">
+	</form>
+
+
+	<h2>add a new menu item</h2>
+
+	<form method="post" action="additem.py" enctype="multipart/form-data">
+		Name <input type="textarea" name="name" maxlength="30" size="30" required><br>
+		Description <input type="text" name="description" maxlength="400" cols="25" required><br>
+		Price <input type="text" name="price" size="6" required><br>
+		Picture of food <input type="file" name="picture" id="picture"><br>
+		<input type="submit" value="add new item" name="submit">
+
+	</form>
+
+	<h2>modify or delete a menuitem</h2>
+	%MODITEM_LINKS%
+
+</main>
+</body></html>
