@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.5
 #add or remove an item from the shopping basket
 
 #external librarys

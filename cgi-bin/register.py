@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python.5
 #a page for creating a new user
 
 #internal librarys
