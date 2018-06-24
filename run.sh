@@ -1,1 +1,1 @@
-PYTHONPATH=$PWD/libs/ python -m http.server --cgi
+PYTHONPATH=$PWD/libs/ python3.5 -m http.server --cgi

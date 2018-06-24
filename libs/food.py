@@ -23,7 +23,7 @@ class Food:
 		pagestring=pagestring.replace("%PICTURE%",self.picture)
 		pagestring=pagestring.replace("%MENUNUMBER%","%d" % self.menunumber)
 		pagestring=pagestring.replace("%NAME%",self.name)
-		pagestring=pagestring.replace("%PRICE%","%.2f" % self.price)
+		pagestring=pagestring.replace("%PRICE%","€%.2f" % self.price)
 
 		if short:
 			pagestring=pagestring.replace("%DESCRIPTION%",self.shortDescription())
