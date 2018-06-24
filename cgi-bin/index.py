@@ -14,5 +14,5 @@ pagestring=pagestring.replace("%COMMON_HEADER%",common_header)
 pagestring=pagestring.replace("%FOODTABLE%",  menu2string( make_menu() )  )
 
 #send processed page to user
-print("Content-Type: text/html\n")
+declare_http()
 print(pagestring)

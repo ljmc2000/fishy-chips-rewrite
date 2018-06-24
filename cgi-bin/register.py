@@ -7,5 +7,5 @@ from functions import *
 pagestring=loadpage("register.html")
 pagestring=pagestring.replace("%COMMON_HEADER%", loadheader() )
 
-print("Content-type: text/html\n")
+declare_http()
 print(pagestring)

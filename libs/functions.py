@@ -50,7 +50,7 @@ def load_cookies():
 		quit()
 
 def sendto(page,message=None):
-	print("Content-type: text/html\n")
+	declare_http()
 
 	if message:
 		popup=loadpage("popup.html")
@@ -60,3 +60,8 @@ def sendto(page,message=None):
 	redirect_code=loadpage("redirect.html")
 	redirect_code=redirect_code.replace("%GOTO_PAGE%",page)
 	print(redirect_code)
+
+def declare_http():
+	'''instead of putting content-type: text/html in each file individually	
+	declare it once here and reference it ever after'''
+	print("Content-Type: text/html; charset=utf-8\n")

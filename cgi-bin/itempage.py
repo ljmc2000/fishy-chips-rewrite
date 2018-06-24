@@ -19,5 +19,5 @@ pagestring=pagestring.replace("%COMMON_HEADER%", loadheader() )
 pagestring=food.delimit(pagestring)
 
 #serve page to user
-print("Content-type: text/html\n")
+declare_http()
 print(pagestring)
