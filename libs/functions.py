@@ -14,25 +14,34 @@ def is_admin():
 	return user.username=="admin"
 
 def loadpage(name):
+	'''load an entire page template'''
 	myfile=open("pages/"+name,"r")
 	returnme=myfile.read()
 	myfile.close
 
 	return returnme
 
+def loadsubpage(name):
+	'''load a shorter code snippet'''
+	myfile=open("subpages/"+name,"r")
+	returnme=myfile.read()
+	myfile.close
+
+	return returnme
+
 def loadheader():
-	returnme=loadpage("common_header.html")
+	returnme=loadsubpage("common_header.html")
 	COOKIES=load_cookies()
 
 	if is_admin():
-		admin_header=loadpage("admin-header.html")
+		admin_header=loadsubpage("admin-header.html")
 		returnme=returnme.replace("%LOGIN_BOX%",admin_header)
 
 	elif COOKIES.get("Login_UID"):
-		logout=loadpage("logout-form.html")
+		logout=loadsubpage("logout-form.html")
 		returnme=returnme.replace("%LOGIN_BOX%",logout)
 	else:
-		login=loadpage("login-form.html")
+		login=loadsubpage("login-form.html")
 		returnme=returnme.replace("%LOGIN_BOX%",login)
 
 	return returnme
@@ -43,7 +52,7 @@ def load_cookies():
 		COOKIES.load(environ["HTTP_COOKIE"])
 		return COOKIES
 	except KeyError:
-		popup=loadpage("popup.html")
+		popup=loadsubpage("popup.html")
 		message="Please enable cookies"
 		popup=popup.replace("%MESSAGE%",message)
 		print(popup)
@@ -53,15 +62,15 @@ def sendto(page,message=None):
 	declare_http()
 
 	if message:
-		popup=loadpage("popup.html")
+		popup=loadsubpage("popup.html")
 		popup=popup.replace("%MESSAGE%",message)
 		print(popup)
 
-	redirect_code=loadpage("redirect.html")
+	redirect_code=loadsubpage("redirect.html")
 	redirect_code=redirect_code.replace("%GOTO_PAGE%",page)
 	print(redirect_code)
 
 def declare_http():
-	'''instead of putting content-type: text/html in each file individually	
+	'''instead of putting content-type: text/html in each file individually
 	declare it once here and reference it ever after'''
 	print("Content-Type: text/html; charset=utf-8\n")

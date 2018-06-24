@@ -11,7 +11,7 @@ if not is_admin():
 
 #generate page
 pagestring=loadpage("admin.html")
-
+pagestring=pagestring.replace("%COMMON_HEADER%",loadheader())
 
 #send data to user
 declare_http()

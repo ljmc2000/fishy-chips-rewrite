@@ -1,6 +1,6 @@
 #a class for storing menuitems
 from database_connection import database_connect
-from functions import loadpage
+from functions import loadpage,loadsubpage
 from session import *
 SESSION=session_start()
 
@@ -14,7 +14,7 @@ class Food:
 
 	def asrow(self):
 		'''print the class as a row in a table'''
-		returnme=loadpage("index_table_row.html")
+		returnme=loadsubpage("index_table_row.html")
 		returnme=self.delimit(returnme,short=True)
 		return returnme
 
