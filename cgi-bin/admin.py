@@ -3,6 +3,7 @@
 
 #internal libraries
 from functions import *
+from admin_functions import *
 
 #check if user is admin
 if not is_admin():
@@ -12,6 +13,7 @@ if not is_admin():
 #generate page
 pagestring=loadpage("admin.html")
 pagestring=pagestring.replace("%COMMON_HEADER%",loadheader())
+pagestring=pagestring.replace("%MODITEM_LINKS%",get_modlink_items())
 
 #send data to user
 declare_http()
