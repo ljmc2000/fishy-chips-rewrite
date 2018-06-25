@@ -18,11 +18,12 @@ def gen_item_table():
 	returnme=""
 
 	for menunumber, name, price in mycursor:
-		if "food"+str(menunumber) in SESSION:
+		menunumber=str(menunumber)
+		if "food"+menunumber in SESSION:
 			row=checkout_table_row
-			row=row.replace("%MENUNUMBER%",str(menunumber))
+			row=row.replace("%MENUNUMBER%",menunumber)
 			row=row.replace("%NAME%",name.decode() )
-			row=row.replace("%INBASKET%",SESSION["food"+str(menunumber)])
+			row=row.replace("%INBASKET%",SESSION["food"+menunumber])
 			row=row.replace("%PRICE%", "€%.2f" % price)
 			returnme=returnme+row
 
