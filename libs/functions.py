@@ -22,7 +22,7 @@ def loadpage(name):
 	return returnme
 
 def loadsubpage(name):
-	'''load a shorter code snippet'''
+	'''load a shorter html code snippet'''
 	myfile=open("subpages/"+name,"r")
 	returnme=myfile.read()
 	myfile.close
