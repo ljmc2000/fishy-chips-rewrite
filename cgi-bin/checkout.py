@@ -21,6 +21,7 @@ pagestring=loadpage("checkout.html")
 pagestring=pagestring.replace("%COMMON_HEADER%",loadheader())
 pagestring=pagestring.replace("%ITEMCART_TABLE%",gen_item_table())
 pagestring=pagestring.replace("%PAYMENT_INFO_FORM%",gen_payment_info_form(user.username) )
+pagestring=pagestring.replace("%DELIVERY_ADDRESS_FORM%",gen_address_form(user.username) )
 
 #send page to user
 declare_http()
