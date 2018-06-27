@@ -4,6 +4,11 @@
 #internal librarys
 from functions import *
 
+#redirect to homepage if already signed in
+COOKIES=load_cookies()
+if COOKIES.get("Login_UID"):
+	sendto("/")
+
 pagestring=loadpage("register.html")
 pagestring=pagestring.replace("%COMMON_HEADER%", loadheader() )
 
