@@ -7,13 +7,8 @@ from checkout_funcs import *
 from pay_info_forms import *
 from userclasses import User
 
-#external libs
-from http import cookies
-from os import environ
-
 #load cookies
-COOKIES=cookies.SimpleCookie()
-COOKIES.load(environ["HTTP_COOKIE"])
+COOKIES=load_cookies()
 
 #get user and ensure signed in
 if COOKIES.get("Login_UID"):
