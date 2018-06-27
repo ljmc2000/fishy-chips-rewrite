@@ -1,0 +1,25 @@
+<form align="right" method="post" action="update-pay-info.py">
+	<h2>Payment info</h2>
+
+	Card number: <input type="text" name="cardnum" size="16" maxlength="16"><br>
+
+	Expiry month: <select name="expiremonth">
+		<option value="Jan">January</option>
+		<option value="Feb">February</option>
+		<option value="Mar">March</option>
+		<option value="Apr">April</option>
+		<option value="May">May</option>
+		<option value="Jun">June</option>
+		<option value="Jul">July</option>
+		<option value="Aug">August</option>
+		<option value="Sep">September</option>
+		<option value="Oct">October</option>
+		<option value="Nov">November</option>
+		<option value="Dec">December</option>
+	</select><br>
+
+	Expiry year: (2015 would be 15) <input type="text" name="expireyear" size="2" maxlength="2"><br>
+	CCV: (the number on the back) <input type="text" name="ccv" size="3" maxlength="3"><br>
+
+	<input type="submit" value="save">
+</form>

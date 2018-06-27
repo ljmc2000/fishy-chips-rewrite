@@ -3,7 +3,6 @@ from functions import loadsubpage
 from database_connection import database_connect
 
 def gen_payment_info_form(username):
-	formstring=loadsubpage("payment-info-form.html")
 	myconnection,mycursor=database_connect()
 	getpayinfo="select cardnumber,expiremonth,expireyear,ccv from payinfo where (username = ?)"
 
@@ -11,6 +10,7 @@ def gen_payment_info_form(username):
 
 	try:
 		cardnumber,expiremonth,expireyear,ccv=mycursor.fetchone()
+		formstring=loadsubpage("payment-info-form.html")
 
 		formstring=formstring.replace("%CARDNUMBER%",cardnumber.decode())
 		formstring=formstring.replace("%EXPIREMONTH%",expiremonth.decode())
@@ -18,10 +18,7 @@ def gen_payment_info_form(username):
 		formstring=formstring.replace("%CCV%","%3d" % ccv)
 
 	except TypeError:
-		formstring=formstring.replace("%CARDNUMBER%","")
-		formstring=formstring.replace("%EXPIREMONTH%","blank")
-		formstring=formstring.replace("%EXPIREYEAR%","")
-		formstring=formstring.replace("%CCV%","")
+		formstring=loadsubpage("blank-payment-info-form.html")
 
 	mycursor.close()
 	myconnection.close()
@@ -43,10 +40,7 @@ def gen_address_form(username):
 		formstring=formstring.replace("%EIRCODE%",eircode.decode() )
 
 	except TypeError:
-		formstring=formstring.replace("%LINE1%","")
-		formstring=formstring.replace("%LINE2%","blank")
-		formstring=formstring.replace("%TOWN%","")
-		formstring=formstring.replace("%EIRCODE%","")
+		formstring=loadsubpage("blank-delivery-address-form.html")
 
 	mycursor.close()
 	myconnection.close()
