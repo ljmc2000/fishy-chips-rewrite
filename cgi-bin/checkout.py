@@ -2,7 +2,7 @@
 #allow the user to modify or confirm their order
 
 #internal libs
-from functions import loadpage,loadheader,declare_http
+from functions import *
 from checkout_funcs import *
 from pay_info_forms import *
 from userclasses import User
@@ -15,8 +15,11 @@ from os import environ
 COOKIES=cookies.SimpleCookie()
 COOKIES.load(environ["HTTP_COOKIE"])
 
-#get user
-user=User(COOKIES["Login_UID"].value)
+#get user and ensure signed in
+if COOKIES.get("Login_UID"):
+	user=User(COOKIES["Login_UID"].value)
+else:
+	sendto("/")
 
 #generate page
 pagestring=loadpage("checkout.html")

@@ -20,7 +20,7 @@ else:
 	myconnection.commit()
 	COOKIES["Login_UID"]["expires"]=-1
 	print(COOKIES)
-	sendto("/")
+	sendto(environ["HTTP_REFERER"])
 
 	mycursor.close()
 	myconnection.close()

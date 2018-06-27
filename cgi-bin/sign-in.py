@@ -16,6 +16,7 @@ myconnection,mycursor=database_connect()
 cookie_expiry=60*60*24*30	#keep the cookie for 30 days
 now=time()
 COOKIES=load_cookies()
+redirectpage=environ["HTTP_REFERER"]	#dont change page on login
 
 #get username and password from post request
 POST=cgi.FieldStorage()
@@ -24,7 +25,7 @@ try:
 	password=POST["password1"].value
 
 except KeyError: #ensure correct post data
-	sendto("/",message="Username or password blank")
+	sendto(redirectpage,message="Username or password blank")
 	quit()
 
 #get password hash from database
@@ -35,12 +36,12 @@ try:
 	hashword=hashword.decode()
 
 except TypeError:
-	sendto("/",message="User %s not found" % username)
+	sendto(redirectpage,message="User %s not found" % username)
 	quit()
 
 #verify password hash
 if not verify_password(password,hashword):
-	sendto("/",message="password is wrong")
+	sendto(redirectpage,message="password is wrong")
 	quit()
 
 #generate login uid
@@ -60,8 +61,8 @@ expires=strftime('%Y-%m-%d %H:%M:%S',localtime(now+cookie_expiry))
 mycursor.execute(savecookie, (username,Login_UID,expires,))
 myconnection.commit()
 
-#redirect user to welcome page
-sendto("/")
+#redirect user to where they started
+sendto(redirectpage)
 
 #close connection and cursor
 mycursor.close()
