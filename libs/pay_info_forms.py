@@ -15,7 +15,7 @@ def gen_payment_info_form(username):
 		formstring=formstring.replace("%CARDNUMBER%",cardnumber.decode())
 		formstring=formstring.replace("%EXPIREMONTH%",expiremonth.decode())
 		formstring=formstring.replace("%EXPIREYEAR%","%2d" % expireyear)
-		formstring=formstring.replace("%CCV%","%3d" % expireyear)
+		formstring=formstring.replace("%CCV%","%3d" % ccv)
 
 	except TypeError:
 		formstring=formstring.replace("%CARDNUMBER%","")
