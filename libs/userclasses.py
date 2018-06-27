@@ -4,7 +4,7 @@ from database_connection import database_connect
 class User:
 	def __init__(self,uid):
 		(myconnection,mycursor)=database_connect()
-		get_user_details="select username from users join logged_in_users using (username) where(Login_UID=?)"
+		get_user_details="select username from logged_in_users where(Login_UID=?)"
 		mycursor.execute(get_user_details,(uid,))
 
 		username, = mycursor.fetchone()
