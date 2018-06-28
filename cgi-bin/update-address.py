@@ -4,7 +4,7 @@
 #internal librarys
 from database_connection import database_connect
 from functions import load_cookies,sendto
-from userclasses import User
+from classes import User
 
 #external libs
 import cgi

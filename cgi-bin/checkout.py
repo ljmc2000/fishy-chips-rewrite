@@ -5,7 +5,7 @@
 from functions import *
 from checkout_funcs import *
 from pay_info_forms import *
-from userclasses import User
+from classes import User
 
 #load cookies
 COOKIES=load_cookies()
