@@ -3,7 +3,7 @@
 
 #internal librarys
 from functions import *
-from food import make_menu,menu2string
+from classes import make_menu,menu2string
 
 #load the page
 pagestring=loadpage("index.html")

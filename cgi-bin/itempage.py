@@ -3,7 +3,7 @@
 
 #internal librarys
 from functions import *
-from food import *
+from classes import loadfood
 
 #external librarys
 import cgi
