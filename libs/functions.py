@@ -1,10 +1,11 @@
 #some functions that can be used by all other cgi scripts
 from os import environ
 from http import cookies
-from classes import User
 
 def is_admin():
 	'''check if the user is logged in and is an admin'''
+	from classes import User
+
 	COOKIES=load_cookies()
 	if not COOKIES.get("Login_UID"):
 		return False
