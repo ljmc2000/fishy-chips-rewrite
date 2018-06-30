@@ -42,6 +42,14 @@ class CreditCard:
 		returnme=returnme+"CCV: "+str(self.ccv)
 		return returnme
 
+	def delimit(self,pagestring):
+		pagestring=pagestring.replace("%CARD_NUMBER%",self.cardnumber)
+		pagestring=pagestring.replace("%EXPIREMONTH%",self.expiremonth)
+		pagestring=pagestring.replace("%EXPIREYEAR%",str(self.expireyear) )
+		pagestring=pagestring.replace("%CCV%",str(self.ccv) )
+
+		return pagestring
+
 class Address:
 	def __init__(self,user):
 		(myconnection,mycursor)=database_connect()
@@ -64,6 +72,14 @@ class Address:
 		returnme=returnme+self.town+"\n"
 		returnme=returnme+self.eircode
 		return returnme
+
+	def delimit(self,pagestring):
+		pagestring=pagestring.replace("%LINE1%",self.line1)
+		pagestring=pagestring.replace("%LINE2%",self.line2)
+		pagestring=pagestring.replace("%TOWN%",self.town)
+		pagestring=pagestring.replace("%EIRCODE%",self.eircode)
+
+		return pagestring
 
 class Food:
 	def __init__(self, menunumber, name, description, price, picture):
