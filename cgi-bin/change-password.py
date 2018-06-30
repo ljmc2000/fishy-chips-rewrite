@@ -10,6 +10,7 @@ from classes import User
 #external libs
 import cgi
 from os import environ
+import bcrypt
 
 #get cookies
 COOKIES=load_cookies()
@@ -40,3 +41,15 @@ if not verify_password(oldpwd,hashedword):
 if newpwd1 != newpwd2:
 	sendto(environ["HTTP_REFERER"],message="passwords don't match")
 	quit()
+
+#generate new password
+newhashword=bcrypt.hashpw(newpwd1.encode(),bcrypt.gensalt())
+
+#push to database
+change_password="update users set password=? where (username=?)"
+mycursor.execute(change_password,(newhashword,user.username) )
+myconnection.commit()
+
+#send user back
+sendto(environ["HTTP_REFERER"],message="Password updated sucessfully")
+
