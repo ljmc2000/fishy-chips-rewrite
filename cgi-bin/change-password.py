@@ -32,8 +32,11 @@ mycursor.execute(getoldpassword,(user.username,) )
 hashedword=hashedword.decode()
 
 #check old password
-
-
 if not verify_password(oldpwd,hashedword):
 	sendto(environ["HTTP_REFERER"],message="wrong original password")
+	quit()
 
+#check passwords match
+if newpwd1 != newpwd2:
+	sendto(environ["HTTP_REFERER"],message="passwords don't match")
+	quit()
