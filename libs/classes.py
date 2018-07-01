@@ -95,12 +95,16 @@ class Food:
 		returnme=self.delimit(returnme,short=True)
 		return returnme
 
-	def delimit(self,pagestring,short=False):
+	def delimit(self,pagestring,short=False,hascur=True):
 		'''replace each variable in pagestring with it\'s respective element of this class '''
 		pagestring=pagestring.replace("%PICTURE%",self.picture)
 		pagestring=pagestring.replace("%MENUNUMBER%","%d" % self.menunumber)
 		pagestring=pagestring.replace("%NAME%",self.name)
-		pagestring=pagestring.replace("%PRICE%","€%.2f" % self.price)
+
+		if hascur:
+			pagestring=pagestring.replace("%PRICE%","€%.2f" % self.price)
+		else:
+			pagestring=pagestring.replace("%PRICE%","%.2f" % self.price )
 
 		if short:
 			pagestring=pagestring.replace("%DESCRIPTION%",self.shortDescription())

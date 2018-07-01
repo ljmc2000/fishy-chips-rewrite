@@ -21,7 +21,7 @@ if not is_admin():
 pagestring=loadpage("moditem.html")
 pagestring=pagestring.replace("%COMMON_HEADER%",loadheader() )
 menuitem=loadfood(GET["menunumber"].value)
-pagestring=menuitem.delimit(pagestring)
+pagestring=menuitem.delimit(pagestring,hascur=False)
 
 #send page to user
 declare_http()
