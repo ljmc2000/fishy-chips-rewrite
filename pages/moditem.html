@@ -1,0 +1,21 @@
+<html><body>
+<link rel="stylesheet" href="/pages/style.css" />
+%COMMON_HEADER%
+<main>
+	<form method="post" action="changeitem.py?menunumber=%MENUNUMBER%">
+		<h2>Modify attributes</h2>
+		name <input type="text" name="name" value="%NAME%" required><br>
+		description <input type="text" name="description" value="%DESCRIPTION%" required><br>
+		price <input type="text" name="price" value="%PRICE%" required><br>
+		<input type="submit" value="update">
+	</form>
+
+	<form method="post" action="changepicture.py?menunumber=%MENUNUMBER%" enctype="multipart/form-data">
+		<h2>Upload new picture</h2>
+		select file: <input type="file" name="picture" id="picture">
+		<input type="submit" value="update">
+	</form>
+
+	<a href="/cgi-bin/admin.py">return to previous page</a>
+</main>
+</body></html>
