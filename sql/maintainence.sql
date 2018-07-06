@@ -6,4 +6,4 @@ this falls low on the prioritys list
 */
 
 //delete old login cookies
-delete from logged in users where (expires<now());
+delete from logged_in_users where (expires<now());
