@@ -4,25 +4,34 @@
 	%COMMON_HEADER%
 
 	<big><center>Today</center></big>
-	<table align="center">
+	<table align="center" id="box">
+	<th></th>
 	<th>|Customer|</th>
 	<th>|Date placed|</th>
 	<th>|Spent|</th>
+	%DAY_ROWS%
+	<tr><td></td><td id="box"><b>Total</b></td><td></td><td id="box"><b>%DAY_TOTAL%</b></td></tr>
 	</table>
 
 	<big><center>This Month</center></big>
-	<table align="center">
+	<table align="center" id="box">
+	<th></th>
 	<th>|Customer|</th>
 	<th>|Date placed|</th>
 	<th>|Spent|</th>
+	%MONTH_ROWS%
+	<tr><td></td><td id="box"><b>Total</b></td><td></td><td id="box"><b>%MONTH_TOTAL%</b></td></tr>
 	</table>
 
 
 	<big><center>All Time</center></big>
-	<table align="center">
+	<table align="center" id="box">
+	<th></th>
 	<th>|Customer|</th>
 	<th>|Date placed|</th>
 	<th>|Spent|</th>
+	%ALLTIME_ROWS%
+	<tr><td></td><td id="box"><b>Total</b></td><td></td><td id="box"><b>%ALLTIME_TOTAL%</b></td></tr>
 	</table>
 
 
