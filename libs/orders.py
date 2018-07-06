@@ -27,6 +27,8 @@ def parse_order(items_ordered):
 		line[0]=int(line[0])
 		returnme=returnme+foodict[ line[0] ]+"×"+line[1]+"<br>"
 
+	mycursor.close()
+	myconnection.close()
 	return returnme
 
 def get_order_tables():
@@ -47,6 +49,7 @@ def get_order_tables():
 		row=row.replace("%ORDERED_ITEMS%",parse_order(items_ordered) )
 		addr=str( Address( username.decode() ) ).replace("\n","<br>")
 		row=row.replace("%ADDRESS%",addr)
+		row=row.replace("%ORDERNO%", str(orderno) )
 
 		returnme=returnme+row
 
