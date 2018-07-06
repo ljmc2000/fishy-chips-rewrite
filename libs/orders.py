@@ -11,7 +11,7 @@ def parse_order(items_ordered):
 	'''convert an order string to a human readable order'''
 	from database_connection import database_connect
 
-	items_ordered=items_ordered.decode()[:-1]
+	items_ordered=items_ordered.decode().strip(":")
 
 	foodict={}
 	getfoods="select menunumber,name from food"

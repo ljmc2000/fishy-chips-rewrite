@@ -10,8 +10,9 @@ import cgi
 from os import environ
 
 #check user is admin
-if not is_admin:
+if not is_admin():
 	sendto("/",message="Access denied")
+	quit()
 
 #page variables
 POST=cgi.FieldStorage()
