@@ -1,9 +1,33 @@
+#librarys to do with displaying orders
+
 #internal libs
 from classes import Address
 from functions import loadsubpage
 
 #external libs
 from html import escape
+
+def parse_order(items_ordered):
+	'''convert an order string to a human readable order'''
+	from database_connection import database_connect
+
+	items_ordered=items_ordered.decode()[:-1]
+
+	foodict={}
+	getfoods="select menunumber,name from food"
+	myconnection,mycursor=database_connect()
+	mycursor.execute(getfoods)
+
+	for menunumber,name in mycursor:
+		foodict[menunumber]=name.decode()
+
+	returnme=""
+	for line in items_ordered.split(":"):
+		line=line.split("x")
+		line[0]=int(line[0])
+		returnme=returnme+foodict[ line[0] ]+"×"+line[1]+"<br>"
+
+	return returnme
 
 def get_order_tables():
 	'''generate table of orders'''
@@ -19,8 +43,8 @@ def get_order_tables():
 		row=row_template
 		safeusername=escape( username.decode() )
 		row=row.replace("%USERNAME%",safeusername )
-#		row=row.replace("%ORDERED_ITEMS%",parse_order(items_ordered) )
-		addr=str( Address( username.decode() ) )
+		row=row.replace("%ORDERED_ITEMS%",parse_order(items_ordered) )
+		addr=str( Address( username.decode() ) ).replace("\n","<br>")
 		row=row.replace("%ADDRESS%",addr)
 
 		returnme=returnme+row
