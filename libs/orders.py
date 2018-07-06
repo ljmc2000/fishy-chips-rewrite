@@ -36,13 +36,14 @@ def get_order_tables():
 	returnme=""
 	row_template=loadsubpage("orders_table_row.html")
 	myconnection,mycursor=database_connect()
-	get_orders="select username,items_ordered,orderno from valid_orders where fulfilled=0"
+	get_orders="select username,placed,items_ordered,orderno from valid_orders where fulfilled=0"
 	mycursor.execute(get_orders)
 
-	for username,items_ordered,orderno in mycursor:
+	for username,placed,items_ordered,orderno in mycursor:
 		row=row_template
 		safeusername=escape( username.decode() )
 		row=row.replace("%USERNAME%",safeusername )
+		row=row.replace("%PLACED%", placed.strftime("%H:%M") )
 		row=row.replace("%ORDERED_ITEMS%",parse_order(items_ordered) )
 		addr=str( Address( username.decode() ) ).replace("\n","<br>")
 		row=row.replace("%ADDRESS%",addr)
