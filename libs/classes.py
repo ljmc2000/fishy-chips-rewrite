@@ -1,8 +1,13 @@
 #classes to represent users, creditcards, addresses, Foods etc...
+
+#internal libs
 from database_connection import database_connect
 from functions import loadpage,loadsubpage
 from session import *
 SESSION=session_start()
+
+#external libs
+from html import escape
 
 class User:
 	def __init__(self,uid):
@@ -40,7 +45,7 @@ class CreditCard:
 		returnme=returnme+"card_number: "+self.cardnumber+"\n"
 		returnme=returnme+"expires: "+self.expiremonth+"/"+str(self.expireyear)+"\n"
 		returnme=returnme+"CCV: "+str(self.ccv)
-		return returnme
+		return escape(returnme)
 
 	def delimit(self,pagestring):
 		pagestring=pagestring.replace("%CARD_NUMBER%",self.cardnumber)
@@ -71,7 +76,7 @@ class Address:
 		returnme=returnme+self.line2+"\n"
 		returnme=returnme+self.town+"\n"
 		returnme=returnme+self.eircode
-		return returnme
+		return escape(returnme)
 
 	def delimit(self,pagestring):
 		pagestring=pagestring.replace("%LINE1%",self.line1)
