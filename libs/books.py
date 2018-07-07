@@ -2,8 +2,11 @@
 
 def get_twixt(mycursor, cutoff_time):
 	'''fetch entrys from cursor until date'''
-	from html import escape
+	#internal libs
 	from functions import loadsubpage
+
+	#external libs
+	from html import escape
 	import datetime
 
 	row_template=loadsubpage("books_table_row.html")
@@ -34,7 +37,10 @@ def get_twixt(mycursor, cutoff_time):
 
 def get_books_rows():
 	'''return all the books rows and totals for day month and all time'''
+	#internal libs
 	from database_connection import database_connect
+
+	#external libs
 	import datetime
 
 	myconnection,mycursor=database_connect()

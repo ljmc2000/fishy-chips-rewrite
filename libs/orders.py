@@ -9,6 +9,7 @@ from html import escape
 
 def parse_order(items_ordered):
 	'''convert an order string to a human readable order'''
+	#internal libs
 	from database_connection import database_connect
 
 	items_ordered=items_ordered.decode().strip(":")
@@ -33,6 +34,7 @@ def parse_order(items_ordered):
 
 def get_order_tables():
 	'''generate table of orders'''
+	#internal libs
 	from database_connection import database_connect
 
 	returnme=""
