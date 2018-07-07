@@ -1,0 +1,22 @@
+<html><body>
+<link rel="stylesheet" href="/pages/style.css" />
+	%COMMON_HEADER%
+<main>
+	<table align="left">
+		<th>Past orders</th>
+		%ORDERS_TABLE_ROWS%
+	</table>
+
+	<form method="post" action="change-password.py" align="right">
+		<h2>Change password</h2>
+		Old password <input type="password" name="oldpwd" required/><br>
+		new password <input type="password" name="newpwd1" required><br>
+		repeat password <input type="password" name="newpwd2" required><br>
+		<input type="submit" value="change password" name="submit">
+	</form>
+
+	%PAYMENT_INFO_FORM%
+	%DELIVERY_ADDRESS_FORM%
+	
+</main>
+</body></html>
