@@ -46,9 +46,11 @@ def get_books_rows():
 
 	cutoff_time = datetime.datetime.now() - datetime.timedelta(days=30)
 	month_row,month_total=get_twixt(mycursor, cutoff_time)
+	month_total=month_total+day_total
 
 	cutoff_time=datetime.datetime(1,1,1)
 	alltime_row,alltime_total=get_twixt(mycursor, cutoff_time)
+	alltime_total=alltime_total+month_total
 
 
 	return day_row,day_total,month_row,month_total,alltime_row,alltime_total
