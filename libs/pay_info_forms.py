@@ -31,7 +31,7 @@ def gen_payment_info_form(username,showdel=False):
 	myconnection.close()
 	return formstring
 
-def gen_address_form(username):
+def gen_address_form(username,showdel=False):
 	formstring=loadsubpage("delivery-address-form.html")
 	myconnection,mycursor=database_connect()
 	getaddress="select line1,line2,town,eircode from address where (username = ?)"
@@ -45,6 +45,13 @@ def gen_address_form(username):
 		formstring=formstring.replace("%LINE2%",line2.decode() )
 		formstring=formstring.replace("%TOWN%",address.decode() )
 		formstring=formstring.replace("%EIRCODE%",eircode.decode() )
+
+		if showdel:
+			delbutton=loadsubpage("delbutton.html")
+			delbutton=delbutton.replace("%FIELD%","address")
+			formstring=formstring.replace("%DELBUTTON%",delbutton)
+		else:
+			formstring=formstring.replace("%DELBUTTON%","")
 
 	except TypeError:
 		formstring=loadsubpage("blank-delivery-address-form.html")
