@@ -18,7 +18,7 @@ else:
 #generate page
 pagestring=loadpage("manage-account.html")
 pagestring=pagestring.replace("%COMMON_HEADER%",loadheader() )
-pagestring=pagestring.replace("%PAYMENT_INFO_FORM%",gen_payment_info_form(user.username) )
+pagestring=pagestring.replace("%PAYMENT_INFO_FORM%",gen_payment_info_form(user.username,showdel=True) )
 pagestring=pagestring.replace("%DELIVERY_ADDRESS_FORM%",gen_address_form(user.username) )
 
 #send page to user
