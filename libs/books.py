@@ -11,9 +11,13 @@ def get_twixt(mycursor, cutoff_time):
 	total=0
 
 
-	placed = datetime.datetime.now()
-	while (placed > cutoff_time) and ( mycursor._have_unread_result() ):
+	while mycursor._have_unread_result():
+		if mycursor._nextrow[0]:
+			if  mycursor._nextrow[0][2] < cutoff_time:
+				break
+
 		orderno,username,placed,spent=mycursor.fetchone()
+
 		row=row_template
 		row=row.replace("%ORDERNO%", str(orderno) )
 		unme=username.decode()
@@ -23,7 +27,10 @@ def get_twixt(mycursor, cutoff_time):
 		returnme=returnme+row
 		total=total+spent
 
-	return returnme,total
+	if returnme and total:
+		return returnme,total
+	else:
+		return "",0
 
 def get_books_rows():
 	'''return all the books rows and totals for day month and all time'''
