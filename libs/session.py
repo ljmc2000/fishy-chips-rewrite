@@ -73,7 +73,11 @@ class Session():
 
 	def clear(self,key):
 		'''wipe a key clean completely'''
-		os.remove(self.sessdir+"/"+key)
+		try:
+			os.remove(self.sessdir+"/"+key)
+		except FileNotFoundError:
+			#do nothing
+			pass
 
 def session_start():
 	COOKIE=cookies.SimpleCookie()
