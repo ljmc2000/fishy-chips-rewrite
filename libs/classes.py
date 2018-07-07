@@ -15,11 +15,24 @@ class User:
 		get_user_details="select username from logged_in_users where(Login_UID=?)"
 		mycursor.execute(get_user_details,(uid,))
 
-		username, = mycursor.fetchone()
-		mycursor.close()
-		myconnection.close()
+		try:
+			username, = mycursor.fetchone()
+			mycursor.close()
+			myconnection.close()
 
-		self.username=username.decode()
+			self.username=username.decode()
+
+		except TypeError:	#if user actually not logged in, destroy their login cookie
+			#internal libs
+			from functions import load_cookies,sendto
+			#external libs
+			from os import environ
+
+			COOKIES=load_cookies()
+			COOKIES["Login_UID"]["expires"]=-1
+			print(COOKIES)
+			sendto(environ["HTTP_REFERER"],message="Error with login cookie")
+			quit()
 
 
 	def __str__(self):
