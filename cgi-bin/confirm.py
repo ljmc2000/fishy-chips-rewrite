@@ -47,6 +47,11 @@ for item in foodict:
 		items_ordered = items_ordered + "%dx%s:" % (item,SESSION[food])
 		total=total+foodict[item]
 
+#ensure a non blank order string
+if items_ordered == "":
+	sendto(lastpage,"Please order at least one item")
+	quit()
+
 #add order to database
 try:
 	makeorder="insert into orders (username,items_ordered,total,fulfilled) values (?,?,?,0)"
