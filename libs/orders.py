@@ -36,10 +36,8 @@ def cancel_button(orderid):
 	#internal libs
 	from functions import loadsubpage
 
-	returnme=""
-
-	returnme=returnme.replace("%ORDER_ID%","%d" % orderid)
 	returnme=loadsubpage("cancel_button.html")
+	returnme=returnme.replace("%ORDER_ID%","%d" % orderid)
 	return returnme
 
 def get_order_tables():
