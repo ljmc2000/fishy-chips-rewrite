@@ -8,13 +8,13 @@ from verify_password import verify_password
 
 #external librarys
 from hashlib import sha256
-from time import time,localtime,strftime
+import datetime
 from os import environ
 import bcrypt,cgi
 
 myconnection,mycursor=database_connect()
 cookie_expiry=60*60*24*30	#keep the cookie for 30 days
-now=time()
+now=datetime.datetime.now()
 COOKIES=load_cookies()
 redirectpage=environ["HTTP_REFERER"]	#dont change page on login
 
@@ -57,7 +57,7 @@ print(COOKIES)
 
 #add the login cookie to the database
 savecookie=("insert into logged_in_users values(?,?,?)")
-expires=strftime('%Y-%m-%d %H:%M:%S',localtime(now+cookie_expiry))
+expires=datetime.datetime.now() + datetime.timedelta(seconds=cookie_expiry)
 mycursor.execute(savecookie, (username,Login_UID,expires,))
 myconnection.commit()
 

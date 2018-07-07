@@ -11,7 +11,6 @@ def is_admin():
 		return False
 
 	user=User(COOKIES["Login_UID"].value)
-
 	return user.username=="admin"
 
 def loadpage(name):
