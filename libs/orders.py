@@ -32,6 +32,16 @@ def parse_order(items_ordered):
 	myconnection.close()
 	return returnme
 
+def cancel_button(orderid):
+	#internal libs
+	from functions import loadsubpage
+
+	returnme=""
+
+	returnme=returnme.replace("%ORDER_ID%","%d" % orderid)
+	returnme=loadsubpage("cancel_button.html")
+	return returnme
+
 def get_order_tables():
 	'''generate table of orders'''
 	#internal libs
@@ -57,5 +67,31 @@ def get_order_tables():
 
 	mycursor.close()
 	myconnection.close()
+
+	return returnme
+
+def get_user_order_table(username):
+	'''generate a table of orders for a specific user'''
+	#internal libs
+	from database_connection import database_connect
+
+	returnme=""
+	row_template=loadsubpage("user_orders_table_row.html")
+	myconnection,mycursor=database_connect()
+	get_orders="select placed, items_ordered, total, orderno, fulfilled from orders where username=?"
+	mycursor.execute(get_orders,(username,))
+
+	for placed, items_ordered, total, orderno, fulfilled in mycursor:
+		row=row_template
+		row=row.replace("%PLACED%", placed.strftime("%d/%B/%Y<br>%H:%M") )
+		row=row.replace("%ORDERED_ITEMS%",parse_order(items_ordered) )
+		row=row.replace("%TOTAL%","€%.2f" % total)
+
+		if not fulfilled:
+			row=row.replace("%CANCEL_BUTTON%",cancel_button(orderno) )
+		else:
+			row=row.replace("%CANCEL_BUTTON%","")
+
+		returnme=returnme+row
 
 	return returnme

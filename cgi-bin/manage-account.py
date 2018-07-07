@@ -4,6 +4,7 @@
 #internal libs
 from functions import *
 from classes import User
+from orders import get_user_order_table
 from pay_info_forms import gen_payment_info_form,gen_address_form
 
 #page vars
@@ -18,6 +19,7 @@ else:
 #generate page
 pagestring=loadpage("manage-account.html")
 pagestring=pagestring.replace("%COMMON_HEADER%",loadheader() )
+pagestring=pagestring.replace("%ORDERS_TABLE_ROWS%",get_user_order_table(user.username) )
 pagestring=pagestring.replace("%PAYMENT_INFO_FORM%",gen_payment_info_form(user.username,showdel=True) )
 pagestring=pagestring.replace("%DELIVERY_ADDRESS_FORM%",gen_address_form(user.username,showdel=True) )
 
