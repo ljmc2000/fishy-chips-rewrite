@@ -28,4 +28,7 @@ if GET["oppr"].value == '-':
 	else:
 		SESSION[item]=str(int(SESSION[item])-1)
 
+if GET["oppr"].value == 'cancel':
+	SESSION.clear(item)
+
 sendto(environ["HTTP_REFERER"])
