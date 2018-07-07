@@ -45,7 +45,7 @@ for item in foodict:
 	food="food"+str(item)
 	if SESSION[food]:
 		items_ordered = items_ordered + "%dx%s:" % (item,SESSION[food])
-		total=total+foodict[item]
+		total=total + (int(SESSION[food])*foodict[item])
 
 #ensure a non blank order string
 if items_ordered == "":
