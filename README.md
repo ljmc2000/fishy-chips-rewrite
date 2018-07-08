@@ -2,9 +2,9 @@ This website was originally written in php. I'm now rewriting it in python becau
 additionally, this time around I will better practice version control
 
 #System specifications
-OS: Gentoo and Arch have been tested 
-Python version: 3.5.5 
-Browser: Chromium 67.0.3396.87 tested
+OS: Gentoo and Arch have been tested  
+Python version: 3.5.5  
+Browser: Chromium 67.0.3396.87 tested  
 
 #dependencies
 bcrypt and mysql-connector. to install pass pip3.5 install --user bcrypt mysql-connector.
