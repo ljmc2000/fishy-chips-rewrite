@@ -7,8 +7,8 @@
 		<h2>register</h2>
 
 		username <input type="text" name="username" required><br>
-		password <input type="password" name="password1" required><br>
-		confirm password <input type="password" name="password2" required><br>
+		password <input type="password" name="password1" pattern=".{8,}" required title="8 characters minimum" required><br>
+		confirm password <input type="password" name="password2" pattern=".{8,}" required title="8 characters minimum"  required><br>
 		<input type="submit">
 	</form>
 <middle>
