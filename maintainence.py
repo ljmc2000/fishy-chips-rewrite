@@ -10,6 +10,13 @@ import os
 #connect to database
 myconnection,mycursor=database_connect()
 
+
+
+
+
+
+
+
 #ensure food images directory exists
 foodir="food_images"
 if not os.path.exists(foodir):
@@ -25,6 +32,20 @@ for a in range(0,mycursor._rowcount):
 for image in os.listdir(foodir):
 	if image not in pictures:
 		os.remove(foodir+"/"+image)
+
+
+
+
+
+
+
+#delete old login cookies
+mycursor.execute("delete from logged_in_users where (expires<now())")
+
+
+
+
+
 
 
 
