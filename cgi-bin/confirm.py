@@ -27,7 +27,7 @@ else:
 try:
 	CreditCard(user.username)
 	Address(user.username)
-except mysql.connector.errors.ProgrammingError:
+except TypeError:
 	sendto(lastpage,message="Only users with a registered credit card and address may order")
 	quit()
 
