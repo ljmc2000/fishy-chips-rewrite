@@ -19,7 +19,14 @@ def get_twixt(mycursor, cutoff_time):
 			if  mycursor._nextrow[0][2] < cutoff_time:
 				break
 
+
 		orderno,username,placed,spent=mycursor.fetchone()
+
+		#fix the first entry always appearing in the today column
+		if placed < cutoff_time:
+			mycursor.fetchall()
+			mycursor.execute(mycursor._executed)  #execute last
+			break
 
 		row=row_template
 		row=row.replace("%ORDERNO%", str(orderno) )
