@@ -54,7 +54,7 @@ def get_books_rows():
 	get_fulfilled_orders="select orderno,username,placed,total from valid_orders where fulfilled=1 order by placed desc"
 	mycursor.execute(get_fulfilled_orders)
 
-	cutoff_time = datetime.datetime.now() - datetime.timedelta(days=1)
+	cutoff_time = datetime.datetime.now().replace(hour=0,minute=0,second=0)
 	day_row,day_total=get_twixt(mycursor, cutoff_time)
 
 	cutoff_time = datetime.datetime.now() - datetime.timedelta(days=30)
