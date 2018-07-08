@@ -41,6 +41,7 @@ for image in os.listdir(foodir):
 
 #delete old login cookies
 mycursor.execute("delete from logged_in_users where (expires<now())")
+myconnection.commit()
 
 
 
