@@ -20,7 +20,6 @@ mycursor.execute("select picture from food")
 pictures=mycursor.fetchall()
 for a in range(0,mycursor._rowcount):
 	pictures[a]=pictures[a][0].decode()
-print(pictures)
 
 #delete orphaned photos from disk
 for image in os.listdir(foodir):
