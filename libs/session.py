@@ -17,16 +17,9 @@ if not os.path.exists(directory):
 	os.makedirs(directory,0o700)
 
 class Session():
+	'''an object to represent a php like session'''
 	def __init__(self,sid):
-		if not sid:	#if no sid given
-			now=str(time())
-			now=now.encode()
-			hashsid=sha512()
-			hashsid.update(now)
-			self.sid=hashsid.hexdigest()
-
-		else:
-			self.sid=sid
+		self.sid=sid
 
 		#create folder for users session with mode 700
 		self.sessdir=directory+"/"+self.sid
@@ -120,7 +113,13 @@ def session_start():
 	COOKIE.load(os.environ.get('HTTP_COOKIE'))
 
 	if not COOKIE.get("SESSION"):
-		SESSION=Session(None)
+		now=str(time())
+		now=now.encode()
+		hashsid=sha512()
+		hashsid.update(now)
+		sid=hashsid.hexdigest()
+
+		SESSION=Session(sid)
 		COOKIE["SESSION"]=SESSION.sid
 		print(COOKIE)
 
