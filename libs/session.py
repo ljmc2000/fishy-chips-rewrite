@@ -8,9 +8,13 @@ from http import cookies
 from hashlib import sha512
 
 #create session folder
-directory=os.environ["TMPDIR"]+'/pysession/'
+try:
+	directory=os.environ["TMPDIR"]+'/pysession/'
+except KeyError:
+	directory="/tmp/pysession/"
+
 if not os.path.exists(directory):
-	os.makedirs(directory)
+	os.makedirs(directory,0o700)
 
 class Session():
 	def __init__(self,sid):
@@ -24,10 +28,10 @@ class Session():
 		else:
 			self.sid=sid
 
-		#create folder for users session
+		#create folder for users session with mode 700
 		self.sessdir=directory+"/"+self.sid
 		if not os.path.exists(self.sessdir):
-			os.makedirs(self.sessdir)
+			os.makedirs(self.sessdir,0o700)
 
 		#make the object convertable to a dictionary
 		self.__dict__=self.__dict__()
