@@ -20,7 +20,7 @@ myconnection,mycursor=database_connect()
 #ensure food images directory exists
 foodir="food_images"
 if not os.path.exists(foodir):
-	os.mkdirs(foodir)
+	os.makedirs(foodir)
 
 #get valid filenames from database
 mycursor.execute("select picture from food")
