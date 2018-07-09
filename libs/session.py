@@ -41,6 +41,7 @@ class Session():
 	def __repr__(self):
 		return "<Session object with sid "+self.sid+">"
 
+
 	def __getitem__(self,key):
 		try:
 			file=open(self.sessdir+"/"+key,"r")
@@ -79,6 +80,37 @@ class Session():
 			#do nothing
 			pass
 
+	def destroy(self):
+		'''destroy the session object'''
+		for key in os.listdir(self.sessdir):
+			os.remove(self.sessdir+"/"+key)
+		os.removedirs(self.sessdir)
+		self.__class__=DestroyedSession
+
+class DestroyedSession:
+	'''a session that has been destroyed'''
+
+	def __str__(self):
+		raise TypeError("Session has been destroyed")
+
+	def __repr__(self):
+		return "<Destroyed Session object with sid "+self.sid+">"
+
+	def __getitem__(self,key):
+		raise TypeError("Session has been destroyed")
+
+	def __setitem__(self,key,value):
+		raise TypeError("Session has been destroyed")
+
+	def __iter__(self):
+		raise TypeError("Session has been destroyed")
+
+	def __dict__(self):
+		raise TypeError("Session has been destroyed")
+
+	def clear(self,key):
+		raise TypeError("Session has been destroyed")
+
 def session_start():
 	COOKIE=cookies.SimpleCookie()
 	COOKIE.load(os.environ.get('HTTP_COOKIE'))
@@ -92,13 +124,3 @@ def session_start():
 		SESSION=Session(COOKIE["SESSION"].value)
 
 	return SESSION
-
-def session_destroy():
-	COOKIE=cookies.SimpleCookie()
-	COOKIE.load(os.environ.get('HTTP_COOKIE'))
-	COOKIE["SESSION"]["expires"]=-1
-	print(COOKIE)
-
-	for file in os.listdir(directory+COOKIE["SESSION"].value):
-		os.remove(directory+COOKIE["SESSION"].value+"/"+file)
-	os.removedirs(directory+COOKIE["SESSION"].value+"/")
