@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/env python3.5
 #create a user account from a post request
 
 #internal functions

@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/env python3.5
 #allow the user to cancel orders, change passwords or change and delete payment info/address
 
 #internal libs

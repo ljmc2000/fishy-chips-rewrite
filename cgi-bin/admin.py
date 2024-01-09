@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/env python3.5
 #let the admin modify the menu or their password
 
 #internal libraries

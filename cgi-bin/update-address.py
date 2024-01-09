@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/env python3.5
 #update payment info with a post request
 
 #internal librarys
