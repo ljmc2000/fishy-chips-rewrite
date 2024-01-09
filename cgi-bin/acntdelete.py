@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/env python3.5
 #allow the user to delete their credit card info or their address
 
 #internal libs

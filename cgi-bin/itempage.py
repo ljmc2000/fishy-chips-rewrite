@@ -1,4 +1,4 @@
-#!/usr/bin/python3.5
+#!/usr/bin/env python3.5
 #a page where the item description may be read in full if too long
 
 #internal librarys
