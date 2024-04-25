@@ -36,6 +36,11 @@ big
 	font-size: 150%;
 }
 
+table img {
+	aspect-ratio: 1.7777777777777777;
+	object-fit: cover;
+}
+
 #checkout_table
 {
 	font-size: 150%;
